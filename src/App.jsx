@@ -15,7 +15,7 @@ function App() {
 
     useEffect(() => {
       fetchCast();
-    });
+    }, []);
 
   return (
     <>
@@ -34,7 +34,13 @@ function App() {
               to education.
             </p>
             <ListCast cast={cast} onChoice={ (info) => {setMemberInfo(info)} }/>
-            { memberInfo && <Modals member={memberInfo} handleClose={ () => { setMemberInfo(null) } }/> }
+            { memberInfo &&
+              <Modals 
+                member={memberInfo} 
+                handleClose={ () => { setMemberInfo(null) } }
+                handleChange={ (index) => { setMemberInfo(cast[index])}}
+              /> 
+            }
           </hgroup>
         </article>
       </div>
